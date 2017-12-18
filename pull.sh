@@ -9,5 +9,6 @@ docker pull 1313475/heapster-grafana-amd64:v4.4.3
 docker tag 1313475/heapster-grafana-amd64:v4.4.3 gcr.io/google_containers/heapster-grafana-amd64:v4.4.3
 docker pull 1313475/elasticsearch:v5.6.2
 docker tag 1313475/elasticsearch:v5.6.2 gcr.io/google-containers/elasticsearch:v5.6.2
+gcr.io/google-containers/elasticsearch:v5.6.2
 docker pull 1313475/fluentd-elasticsearch:v2.0.2
 docker tag 1313475/fluentd-elasticsearch:v2.0.2 gcr.io/google-containers/fluentd-elasticsearch:v2.0.2
