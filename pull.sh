@@ -1,14 +1,24 @@
 #!/usr/bin/env  bash
 
+local_repo="1313475"
+target_repo="gcr.io/google-containers"
 
-docker pull 1313475/heapster-influxdb-amd64:v1.3.3
-docker tag 1313475/heapster-influxdb-amd64:v1.3.3 gcr.io/google_containers/heapster-influxdb-amd64:v1.3.3
-docker pull 1313475/heapster-amd64:v1.5.0-beta.2 
-docker tag 1313475/heapster-amd64:v1.5.0-beta.2 gcr.io/google_containers/heapster-amd64:v1.5.0-beta.2
-docker pull 1313475/heapster-grafana-amd64:v4.4.3
-docker tag 1313475/heapster-grafana-amd64:v4.4.3 gcr.io/google_containers/heapster-grafana-amd64:v4.4.3
-docker pull 1313475/elasticsearch:v5.6.2
-docker tag 1313475/elasticsearch:v5.6.2 gcr.io/google-containers/elasticsearch:v5.6.2
-gcr.io/google-containers/elasticsearch:v5.6.2
-docker pull 1313475/fluentd-elasticsearch:v2.0.2
-docker tag 1313475/fluentd-elasticsearch:v2.0.2 gcr.io/google-containers/fluentd-elasticsearch:v2.0.2
+images=("pause-amd64:3.0"
+    "k8s-dns-dnsmasq-nanny-amd64:1.14.5"
+    "k8s-dns-kube-dns-amd64:1.14.5"
+    "k8s-dns-sidecar-amd64:1.14.5"
+    "kube-addon-manager:v6.4-beta.2"
+    "kubernetes-dashboard-amd64:v1.8.0"
+    "heapster-amd64:v1.5.0-beta.2"
+    "heapster-influxdb-amd64:v1.3.3"
+    "heapster-grafana-amd64:v4.4.3"    
+    "storage-provisioner:v1.8.1"
+    "elasticsearch:v5.6.2"
+    "fluentd-elasticsearch:v2.0.2"
+    "defaultbackend:1.4"
+)
+
+for image in ${images[@]}; do
+    docker pull ${local_repo}/${image} \
+    && docker tag ${local_repo}/${image} ${target_repo}/${image}
+done
