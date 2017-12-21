@@ -21,4 +21,5 @@ images=("pause-amd64:3.0"
 for image in ${images[@]}; do
     docker pull ${local_repo}/${image} \
     && docker tag ${local_repo}/${image} ${target_repo}/${image}
-done
+    docker push ${target_repo}/${image}
+done 
